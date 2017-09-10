@@ -21,8 +21,10 @@ public class Controller : NetworkBehaviour {
     public float frameCount;
     public float jumpAmount;
     public bool touching;
-    public bool pulledTrigger;    
-    
+    public bool pulledTrigger;
+    public bool gripped;
+
+    public Transform focus;
     
     public bool clicked;
 
@@ -54,12 +56,13 @@ public class Controller : NetworkBehaviour {
 
     private void HandleUngripped(object sender, ClickedEventArgs e)
     {
-        throw new NotImplementedException();
+        gripped = false;
     }
 
     private void HandleGripped(object sender, ClickedEventArgs e)
     {
-        throw new NotImplementedException();
+        gripped = true;
+        Mover.CallMover(this);
     }
 
     private void RHandlePadClickUp(object sender, ClickedEventArgs e)
